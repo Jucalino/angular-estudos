@@ -1,3 +1,4 @@
 [
-  { "_id": "1", "name": "Angular","category": "Front-End" }
+  { "_id": "1", "name": "Angular","category": "Front-End" },
+  { "_id": "2", "name": "Oracle SQL","category": "Back-End" }
 ]
