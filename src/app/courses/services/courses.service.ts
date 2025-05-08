@@ -21,6 +21,10 @@ export class CoursesService {
     )
   }
 
+  loadById(id:string){
+    return this.httpClient.get<Course>(`${this.API}`)
+  }
+
   save(course: any): Observable<any> {
     const cursosSalvos = JSON.parse(localStorage.getItem('cursos') || '[]');
     course._id = String(Date.now()); // gera ID simples
