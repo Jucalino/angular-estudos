@@ -11,7 +11,7 @@ import { CourseFormComponent } from './containers/course-form/course-form.compon
 
 
 @NgModule({
-  declarations: [CoursesComponent, CourseFormComponent, CoursesListComponent],
+  declarations: [CoursesComponent, CourseFormComponent, CoursesListComponent, ],
   imports: [
     CommonModule,
     CoursesRoutingModule,
