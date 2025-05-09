@@ -21,6 +21,6 @@ export class CourseResolver{
     if (route.params && route.params['id']){
       return this.service.loadById(route.params['id'])
     }
-    return of({_id: '', name: '', category: ''});
+    return of({_id: '', name: '', category: '', lessons: []});
   }
 }

@@ -33,6 +33,7 @@ export class CourseFormComponent implements OnInit {
       Validators.maxLength(100)]],
       category: [course.category, [Validators.required]]
     });
+    console.log(course)
   }
 
   onSubmit() {
