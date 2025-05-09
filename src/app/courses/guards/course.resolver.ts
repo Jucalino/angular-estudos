@@ -11,7 +11,7 @@ import { Course } from '../model/course';
 @Injectable({
   providedIn: 'root'
 })
-export class CourseResolver implements Resolve<Course> {
+export class CourseResolver{
 
   constructor(
     private service: CoursesService

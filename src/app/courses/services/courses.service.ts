@@ -25,12 +25,27 @@ export class CoursesService {
     return this.httpClient.get<Course>(`${this.API}`)
   }
 
-  save(course: any): Observable<any> {
+  save(record: Partial<Course>) {
+    //console.log(record)
+    if(record._id ){
+      //console.log('update')
+      return this.update(record)
+
+    }
+    //console.log('create')
+    return this.create(record)
+  }
+
+  private create(record: Partial<Course>){
     const cursosSalvos = JSON.parse(localStorage.getItem('cursos') || '[]');
-    course._id = String(Date.now()); // gera ID simples
-    cursosSalvos.push(course);
+    record._id = String(Date.now()); // gera ID simples
+    cursosSalvos.push(record);
     localStorage.setItem('cursos', JSON.stringify(cursosSalvos));
-    return of(course); // retorna como se fosse uma resposta do servidor
+    return of(record); // retorna como se fosse uma resposta do servidor
+  }
+
+  private update(record: Partial<Course>){
+    return this.httpClient.put<Course>(`${this.API}/${record}`, record).pipe(first())
   }
 
 }

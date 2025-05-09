@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CoursesService } from '../../services/courses.service';
 import { ActivatedRoute } from '@angular/router';
@@ -13,27 +13,27 @@ import { Course } from '../../model/course';
 })
 export class CourseFormComponent implements OnInit {
 
-  form: FormGroup
+  form!: FormGroup
 
   constructor(private formBuilder: FormBuilder,
     private service: CoursesService,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private location: Location,
-  ) {
-    this.form = this.formBuilder.group({
-      name: [''],
-      category: ['']
-    })
-  }
+  ) {}
 
   ngOnInit(): void {
     const course: Course = this.route.snapshot.data['course']
-    this.form.setValue({name: course.name, category: course.category})
+    this.form = this.formBuilder.group({
+      id: course._id,
+      name: course.name,
+      category: course.category,
+    })
   }
 
   onSubmit() {
-    this.service.save(this.form.value).subscribe(data => this.onSucess(), error => this.onError())
+    this.service.save(this.form.value)
+    .subscribe(data => this.onSucess(), error => this.onError())
   }
 
   onCancel() {
