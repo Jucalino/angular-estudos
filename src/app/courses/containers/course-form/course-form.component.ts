@@ -118,7 +118,7 @@ export class CourseFormComponent implements OnInit {
   }
 
   isFormArrayRequired(){
-    const lessons = this.form.get('lessons') as any;
+    const lessons = this.form.get('lessons') as FormArray;
     return !lessons.valid && lessons.hasError('required') && lessons.touched
   }
 }

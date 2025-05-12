@@ -53,6 +53,9 @@
               <span matPrefix>https://youtu.be/</span>
               <mat-label>URL</mat-label>
               <input matInput formControlName="name" />
+              <mat-error *ngIf="getLessonsFormArray().at(i).get('name')?.invalid">
+                Campo Invalido
+               </mat-error>
             </mat-form-field>
           </td>
           <td>
