@@ -1,27 +1,59 @@
 <mat-card>
   <mat-toolbar color="primary">Detalhes do Curso</mat-toolbar>
 
-  <mat-card-content style="padding: 5px;">
+  <mat-card-content style="padding: 5px">
     <form [formGroup]="form" class="min-width">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Nome" formControlName="name" />
-        <mat-error *ngIf="form.get('name')?.invalid">{{ getErrorMessage("name") }}</mat-error>
+        <input matInput placeholder="Nome" formControlName="name" #name/>
+        <mat-error *ngIf="form.get('name')?.invalid">{{
+          getErrorMessage("name")
+        }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <mat-label>Categoria</mat-label>
-        <mat-select  formControlName="category">
+        <mat-select formControlName="category">
           <mat-option value="null"></mat-option>
           <mat-option value="front-end">Front-End</mat-option>
           <mat-option value="back-end">Back-End</mat-option>
         </mat-select>
-        <mat-error *ngIf="form.get('category')?.invalid">{{ getErrorMessage("category") }}</mat-error>
+        <mat-error *ngIf="form.get('category')?.invalid">{{
+          getErrorMessage("category")
+        }}</mat-error>
       </mat-form-field>
+
+      <mat-toolbar>
+        <span>Aulas</span>
+        <button mat-icon-button color="accent">
+          <mat-icon aria-label="Adicionar uma nova aula">add</mat-icon>
+        </button>
+      </mat-toolbar>
+
+      <table style="width: 100%;" formArrayName="lessons"
+      *ngFor="let lesson of getLessonsFormArray(); let i = index"
+      >
+        <tr [formGroupName]="i">
+          <td style="width: 65%;">
+            <mat-form-field class="full-width">
+              <mat-label>Nome da Aula</mat-label>
+              <input matInput formControlName="name" />
+            </mat-form-field>
+          </td>
+          <td style="width: 30%;">
+            <mat-form-field class="full-width">
+    <span matPrefix>https://youtu.be/</span>
+              <mat-label>URL</mat-label>
+              <input matInput formControlName="name" />
+            </mat-form-field>
+        </tr>
+      </table>
     </form>
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="onSubmit()">Salvar</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">
+      Salvar
+    </button>
     <button mat-raised-button (click)="onCancel()">Cancelar</button>
   </mat-card-actions>
 </mat-card>

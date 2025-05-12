@@ -57,6 +57,10 @@ export class CourseFormComponent implements OnInit {
     })
   }
 
+  getLessonsFormArray(){
+      return (<any>this.form.get('lessons')).controls
+  }
+
   onSubmit() {
     this.service.save(this.form.value).subscribe(
       (data) => this.onSucess(),
